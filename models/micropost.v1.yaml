@@ -1,0 +1,20 @@
+title: micropost
+type: object
+properties:
+  userId:
+    type: string
+  userName:
+    type: string
+  micropost:
+    type: string
+  micropostId:
+    type: string
+  createAt:
+    type: string
+x-examples:
+  example-1:
+    userId: '123456'
+    userName: example
+    micropost: hello!
+    micropostId: '1'
+    createAt: '2021-4-1'

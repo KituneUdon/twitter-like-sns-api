@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: microposts
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000/v1'
+paths:
+  /microposts:
+    parameters: []
+    get:
+      summary: Get microposts
+      operationId: get-microposts
+      description: query paramで指定されたユーザのmicropost一覧を取得する
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  microposts:
+                    type: array
+                    items:
+                      $ref: ../models/micropost.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    microposts:
+                      - userId: '123456'
+                        userName: テストユーザ
+                        micropost: テスト投稿
+                        micropostId: '1'
+                        createAt: '2021-03-21 11:00:00'
+                      - userId: '123456'
+                        userName: テストユーザ
+                        micropost: テスト投稿
+                        micropostId: '2'
+                        createAt: '2021-03-19 12:00:00'
+                      - userId: '123456'
+                        userName: テストユーザ
+                        micropost: テストテストテスト
+                        micropostId: '3'
+                        createAt: '2021-03-10 12:34:52'
+                      - userId: '123456'
+                        userName: テストユーザ
+                        micropost: テスト投稿
+                        micropostId: '4'
+                        createAt: '2020-03-19 12:00:00'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: user-id
+      tags:
+        - microposts
+    post:
+      summary: ''
+      operationId: post-microposts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  micropostId:
+                    type: string
+      parameters: []
+      description: micropostを投稿する機能
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                body:
+                  type: string
+      tags:
+        - microposts
+  /user:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+      operationId: get-user
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+      description: ユーザプロフィールを取得する
+  /follow:
+    post:
+      summary: ''
+      operationId: post-follow
+      responses:
+        '200':
+          description: OK
+      description: ユーザフォロー機能
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                followFromUserId:
+                  type: string
+                followToUserId:
+                  type: string
+      tags:
+        - follow
+    delete:
+      summary: ''
+      operationId: delete-follow
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unfollowFromUserId:
+                  type: string
+                unfollowToUserId:
+                  type: string
+      description: フォロー解除
+      tags:
+        - follow
+components:
+  schemas: {}
+tags:
+  - name: follow
+  - name: microposts
+  - name: user
