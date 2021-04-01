@@ -82,7 +82,7 @@ paths:
                   type: string
       tags:
         - microposts
-  /user:
+  /userprofile:
     get:
       summary: Your GET endpoint
       tags:
@@ -90,13 +90,22 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: ../models/user.v1.yaml
       operationId: get-user
       parameters:
         - schema:
             type: string
           in: query
           name: userId
-      description: ユーザプロフィールを取得する
+          description: user-idを指定する
+      description: 一人のユーザプロフィールを取得する
+    parameters: []
   /follow:
     post:
       summary: ''

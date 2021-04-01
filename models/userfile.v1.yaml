@@ -1,0 +1,12 @@
+title: user
+type: object
+properties:
+  displayName:
+    type: string
+  ' postedNumber':
+    type: integer
+  follower_count:
+    type: integer
+  following_count:
+    type: integer
+description: ''
