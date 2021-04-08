@@ -96,7 +96,7 @@ paths:
                 type: object
                 properties:
                   user:
-                    $ref: ../models/user.v1.yaml
+                    $ref: ../models/userprofile.v1.yaml
       operationId: get-user
       parameters:
         - schema:
