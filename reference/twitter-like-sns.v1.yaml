@@ -102,7 +102,7 @@ paths:
         - schema:
             type: string
           in: query
-          name: userId
+          name: id
           description: user-idを指定する
       description: 一人のユーザプロフィールを取得する
     parameters: []
