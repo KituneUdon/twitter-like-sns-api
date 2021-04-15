@@ -1,12 +1,18 @@
 title: user
 type: object
+description: ''
+x-examples:
+  example:
+    displayName: test
+    postedNumber: 1
+    follower_count: 13
+    following_count: 20
 properties:
   displayName:
     type: string
-  ' postedNumber':
+  postedNumber:
     type: integer
   follower_count:
     type: integer
   following_count:
     type: integer
-description: ''
