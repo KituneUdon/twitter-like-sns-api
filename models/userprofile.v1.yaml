@@ -12,7 +12,7 @@ properties:
     type: string
   postedNumber:
     type: integer
-  follower_count:
+  followerCount:
     type: integer
-  following_count:
+  followingCount:
     type: integer
