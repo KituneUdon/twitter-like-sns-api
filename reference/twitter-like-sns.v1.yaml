@@ -102,7 +102,7 @@ paths:
       operationId: get-user
       parameters:
         - schema:
-            type: string
+            type: integer
           in: query
           name: userId
           description: user-idを指定する
@@ -123,9 +123,9 @@ paths:
               type: object
               properties:
                 followFromUserId:
-                  type: string
+                  type: integer
                 followToUserId:
-                  type: string
+                  type: integer
       tags:
         - follow
     delete:
@@ -153,17 +153,6 @@ components:
     micropost:
       title: microposts
       type: object
-      properties:
-        userId:
-          type: number
-        userName:
-          type: string
-        micropost:
-          type: string
-        micropostId:
-          type: string
-        createAt:
-          type: string
       x-examples:
         example-1:
           userId: 123456
@@ -171,6 +160,17 @@ components:
           micropost: テスト投稿
           micropostId: '1'
           createAt: '2021-03-21 11:00:00'
+      properties:
+        userId:
+          type: integer
+        userName:
+          type: string
+        micropost:
+          type: string
+        micropostId:
+          type: integer
+        createAt:
+          type: string
     userProfile:
       title: userProfile
       type: object
