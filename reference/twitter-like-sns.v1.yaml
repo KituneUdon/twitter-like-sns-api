@@ -1,11 +1,12 @@
 openapi: 3.0.0
 info:
-  title: microposts
+  title: twitter-like-sns
   version: '1.0'
+  description: 'for https://github.com/KituneUdon/twitter-like-sns'
 servers:
-  - url: 'http://localhost:3000/v1'
+  - url: 'http://localhost:3000'
 paths:
-  /microposts:
+  /v1/microposts:
     parameters: []
     get:
       summary: Get microposts
@@ -15,44 +16,45 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            application/json; charset=utf-8:
               schema:
                 type: object
                 properties:
                   microposts:
                     type: array
                     items:
-                      $ref: ../models/micropost.v1.yaml
+                      $ref: '#/components/schemas/micropost'
               examples:
                 example-1:
                   value:
                     microposts:
-                      - userId: '123456'
+                      - userId: 123456
                         userName: テストユーザ
                         micropost: テスト投稿
                         micropostId: '1'
                         createAt: '2021-03-21 11:00:00'
-                      - userId: '123456'
+                      - userId: 123456
                         userName: テストユーザ
                         micropost: テスト投稿
                         micropostId: '2'
                         createAt: '2021-03-19 12:00:00'
-                      - userId: '123456'
+                      - userId: 123456
                         userName: テストユーザ
                         micropost: テストテストテスト
                         micropostId: '3'
                         createAt: '2021-03-10 12:34:52'
-                      - userId: '123456'
+                      - userId: 123456
                         userName: テストユーザ
                         micropost: テスト投稿
                         micropostId: '4'
                         createAt: '2020-03-19 12:00:00'
+          headers: {}
       parameters:
         - schema:
-            type: string
+            type: integer
           in: query
           name: userId
-          description: user-id
+          example: 123456
       tags:
         - microposts
     post:
@@ -82,7 +84,7 @@ paths:
                   type: string
       tags:
         - microposts
-  /userprofile:
+  /v1/userprofile:
     get:
       summary: Your GET endpoint
       tags:
@@ -96,7 +98,7 @@ paths:
                 type: object
                 properties:
                   user:
-                    $ref: ../models/userprofile.v1.yaml
+                    $ref: '#/components/schemas/userProfile'
       operationId: get-user
       parameters:
         - schema:
@@ -106,7 +108,7 @@ paths:
           description: user-idを指定する
       description: 一人のユーザプロフィールを取得する
     parameters: []
-  /follow:
+  /v1/follow:
     post:
       summary: ''
       operationId: post-follow
@@ -145,8 +147,48 @@ paths:
       description: フォロー解除
       tags:
         - follow
+    parameters: []
 components:
-  schemas: {}
+  schemas:
+    micropost:
+      title: microposts
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        micropost:
+          type: string
+        micropostId:
+          type: string
+        createAt:
+          type: string
+      x-examples:
+        example-1:
+          userId: 123456
+          userName: テストユーザ
+          micropost: テスト投稿
+          micropostId: '1'
+          createAt: '2021-03-21 11:00:00'
+    userProfile:
+      title: userProfile
+      type: object
+      properties:
+        displayName:
+          type: string
+        postedNumber:
+          type: integer
+        followerCount:
+          type: integer
+        followingCount:
+          type: integer
+      x-examples:
+        example-1:
+          displayName: test
+          postedNumber: 0
+          followerCount: 0
+          followingCount: 0
 tags:
   - name: follow
   - name: microposts
