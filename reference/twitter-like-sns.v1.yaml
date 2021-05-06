@@ -84,9 +84,9 @@ paths:
                   type: integer
                 micropost:
                   type: string
-                required:
-                  - userId
-                  - micropost
+              required:
+                - userId
+                - micropost
             examples:
               example-1:
                 value:
