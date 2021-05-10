@@ -113,10 +113,10 @@ paths:
                 example-1:
                   value:
                     user:
-                      displayName: string
-                      postedNumber: 0
-                      followerCount: 0
-                      followingCount: 0
+                      displayName: テストユーザ
+                      postedNumber: 20
+                      followerCount: 42
+                      followingCount: 48
       operationId: get-user
       parameters:
         - schema:
